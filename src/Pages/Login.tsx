@@ -4,10 +4,10 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Lib/firebase";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -31,8 +31,16 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 w-full max-w-md">
+    <div className="min-h-screen bg-[#F1EFE8] flex items-center justify-center px-4">
+      <div className="bg-white rounded-[20px] border border-gray-100 p-9 w-full max-w-md">
+        <div className="flex items-center gap-2 mb-7">
+          <div
+            className="w-8 h-8 rounded-[10px] bg-[#534AB7] flex items-center justify-center"
+          >
+            {/* your logo or initials */}
+          </div>
+          <span className="font-medium text-base">DevConnect</span>
+        </div>
         <h1 className="text-2xl font-bold text-gray-900 mb-1">Welcome back</h1>
         <p className="text-gray-500 text-sm mb-6">
           Sign in to your DevConnect account
@@ -55,8 +63,9 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="you@example.com"
-              className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm
+           focus:outline-none focus:ring-2 focus:ring-purple-400
+           focus:border-purple-400 transition-all"
             />
           </div>
 
@@ -70,16 +79,17 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="your password"
-              className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm
+           focus:outline-none focus:ring-2 focus:ring-purple-400
+           focus:border-purple-400 transition-all"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50
-                       text-white font-medium py-2.5 rounded-lg text-sm transition-colors"
+            className="w-full bg-[#534AB7] hover:bg-[#3C3489] disabled:opacity-50
+           text-white font-medium py-2.5 rounded-lg text-sm transition-colors"
           >
             {loading ? "Signing in..." : "Sign in"}
           </button>
@@ -89,7 +99,7 @@ const Login = () => {
           Don't have an account?{" "}
           <Link
             to="/register"
-            className="text-blue-600 font-medium hover:underline"
+            className="text-[#534AB7] font-medium hover:underline"
           >
             Sign up
           </Link>
