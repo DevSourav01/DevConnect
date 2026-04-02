@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
 import { onAuthStateChanged }  from 'firebase/auth'
 import { doc, getDoc }        from 'firebase/firestore'
-import { auth, db }           from '../Lib/firebase'
+import { auth, db } from '../Lib/firebase'
 import type { User } from "../Types/index"
 
 // shape of what context provides
@@ -15,7 +15,7 @@ const AuthContext = createContext<AuthContextType>({
   loading:     true,
 })
 
-// Provider — wrap your whole app in this
+// Provider
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null)
   const [loading, setLoading]         = useState(true)
@@ -47,5 +47,5 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-// export the context itself for useAuth hook
+
 export default AuthContext
