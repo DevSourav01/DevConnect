@@ -5,6 +5,7 @@ import useAuth from "../Hooks/useAuth";
 
 const Navbar = () => {
   const { currentUser } = useAuth();
+  console.log(currentUser?.uid);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -17,42 +18,57 @@ const Navbar = () => {
       <Link to="/" className="text-blue-600 font-bold text-lg">
         DevConnect
       </Link>
-
-      <div className="flex items-center gap-4">
+      {currentUser && (
+        <Link to={`/profile/${currentUser.uid}`}>My Profile</Link>
+      )}
+      <div className="flex items-center gap-6">
         {currentUser ? (
-          // logged in
           <>
-            <Link
-              to="/developers"
-              className="text-sm text-gray-600 hover:text-blue-600"
-            >
-              Developers
-            </Link>
-            <Link
-              to={`/profile/${currentUser.uid}`}
-              className="text-sm text-gray-600 hover:text-blue-600"
-            >
-              My Profile
-            </Link>
-            <button
-              onClick={handleLogout}
-              className="text-sm text-red-500 hover:text-red-600"
-            >
-              Logout
-            </button>
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search developers..."
+                className="w-64 rounded-full border border-gray-200 bg-gray-50 py-2 pl-4 pr-4 text-sm text-gray-700 outline-none placeholder:text-gray-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200"
+              />
+            </div>
+
+            <div className="flex items-center gap-2  bg-white px-2 py-1 ">
+              <img
+                src={currentUser.avatarURL}
+                alt={currentUser.displayName}
+                className="h-9 w-9 rounded-full object-cover"
+              />
+
+              <div className="relative">
+                <select
+                  onChange={handleLogout}
+                  defaultValue=""
+                  className="appearance-none bg-transparent px-2 py-1 pr-6 text-sm font-medium text-gray-700 outline-none cursor-pointer"
+                >
+                  <option value="" hidden>
+                    {currentUser.displayName}
+                  </option>
+                  <option value="logout">Logout</option>
+                </select>
+
+                <span className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 text-xs text-gray-500">
+                  ▼
+                </span>
+              </div>
+            </div>
           </>
         ) : (
-          // not logged in
           <>
             <Link
               to="/login"
-              className="text-sm text-gray-600 hover:text-blue-600"
+              className="text-sm font-medium text-gray-600 transition hover:text-blue-600"
             >
               Sign in
             </Link>
+
             <Link
               to="/register"
-              className="bg-blue-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-blue-700"
+              className="rounded-full bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
             >
               Sign up
             </Link>

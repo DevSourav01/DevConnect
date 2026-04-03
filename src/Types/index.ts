@@ -7,7 +7,7 @@ export interface User {
   bio: string;
   skills: string[]; // e.g. ["React", "TypeScript"]
   avatarURL: string;
-  githubUserName: string;
+  githubUsername: string;
   followers: string[]; // array of uids
   following: string[]; // array of uids
   createdAt: Date;

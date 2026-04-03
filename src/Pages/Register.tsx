@@ -50,14 +50,11 @@ export default function Register() {
     <div className="min-h-screen bg-[#F1EFE8] flex items-center justify-center px-4">
       <div className="bg-white rounded-[20px] border border-gray-100 p-9 w-full max-w-md">
         <div className="flex items-center gap-2 mb-7">
-          <div
-            className="w-8 h-8 rounded-[10px] bg-[#534AB7] flex items-center justify-center"
-          >
+          <div className="w-8 h-8 rounded-[10px] bg-[#534AB7] flex items-center justify-center">
             {/* your logo or initials */}
           </div>
           <span className="font-medium text-base">DevConnect</span>
         </div>
-        {/* header */} {/* ✅ Bug 2 fixed: valid JSX comment syntax */}
         <h1 className="text-2xl font-bold text-gray-900 mb-1">
           Join DevConnect
         </h1>
