@@ -1,17 +1,17 @@
-import { Navigate } from "react-router-dom"
-import useAuth from "../Hooks/useAuth"
+import { Navigate } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
-interface Props{
-    children: React.ReactNode
+interface Props {
+  children: React.ReactNode;
 }
 
-const PrivateRoute=({children}:Props)=>{
-const {currentUser}=useAuth()
+const PrivateRoute = ({ children }: Props) => {
+  const { currentUser } = useAuth();
 
-if(!currentUser){
-    return <Navigate to="/login" replace/>
-}
-return <>{children}</>
-}
+  if (!currentUser) {
+    return <Navigate to="/login" replace />;
+  }
+  return <>{children}</>;
+};
 
-export default PrivateRoute
+export default PrivateRoute;
