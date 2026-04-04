@@ -1,7 +1,7 @@
 import { useState }   from 'react'
 import usePosts       from '../Hooks/usePosts'
 import useAuth        from '../Hooks/useAuth'
-import PostCard from '../Components/Postcard'
+import PostCard from '../Components/PostCard'
 
 const Feed = () => {
   const { currentUser }           = useAuth()
