@@ -29,7 +29,7 @@ const Layout = () => {
       {/* ── NAVBAR ── */}
       <nav
         className="h-14 border-b border-gray-100 bg-white
-                   flex items-center gap-3 px-4 flex-shrink-0 z-30"
+                   flex items-center gap-3 px-4 shrink-0 z-30"
       >
         {/* hamburger — mobile only */}
         <button
@@ -95,7 +95,7 @@ const Layout = () => {
         <aside
           className={`fixed md:static top-0 left-0 h-full w-52 z-50
           bg-white border-r border-gray-100
-          flex flex-col gap-1 p-3 flex-shrink-0
+          flex flex-col gap-1 p-3 shrink-0
           transition-transform duration-200
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
         >
