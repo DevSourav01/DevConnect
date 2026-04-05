@@ -12,7 +12,7 @@ interface Props {
 const PostCard = ({ post }: Props) => {
   const { currentUser } = useAuth();
   const { deletePost, toggleLike } = usePosts();
-  const { comments, addComment } = useComments(post.id);
+  const { comments, addComment, deleteComment } = useComments(post.id);
 
   const [showComments, setShowComments] = useState(false);
   const [commentText, setCommentText] = useState("");
@@ -99,13 +99,21 @@ const PostCard = ({ post }: Props) => {
                 alt={c.authorName}
                 className="w-7 h-7 rounded-full border border-gray-100 shrink-0"
               />
-              <div className="bg-gray-50 rounded-xl px-3 py-2 flex-1">
+              <div className="bg-gray-100 rounded-xl px-3 py-2 flex-1">
                 <p className="text-xs font-medium text-gray-700 mb-0.5">
                   {c.authorName}
                 </p>
                 <p className="text-xs text-gray-600 leading-relaxed">
                   {c.text}
                 </p>
+                {c.authorId === currentUser?.uid && (
+                  <button
+                    onClick={() => deleteComment(c.id)}
+                    className="text-xs text-red-400 hover:text-red-700 mt-1"
+                  >
+                    delete
+                  </button>
+                )}
               </div>
             </div>
           ))}
