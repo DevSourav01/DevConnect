@@ -19,19 +19,19 @@ const Dashboard = () => {
 
       {/* stat cards */}
       <div className="grid grid-cols-3 gap-4 mb-8">
-        <div className="bg-white border border-gray-100 rounded-2xl p-5">
+        <div className="bg-white border border-gray-100 rounded-2xl p-3">
           <p className="text-xs text-gray-400 mb-2">Your posts</p>
           <p className="text-3xl font-semibold text-[#534AB7]">
             {myPosts.length}
           </p>
         </div>
-        <div className="bg-white border border-gray-100 rounded-2xl p-5">
+        <div className="bg-white border border-gray-100 rounded-2xl p-3">
           <p className="text-xs text-gray-400 mb-2">Connections</p>
           <p className="text-3xl font-semibold text-[#1D9E75]">
             {currentUser?.followers?.length || 0}
           </p>
         </div>
-        <div className="bg-white border border-gray-100 rounded-2xl p-5">
+        <div className="bg-white border border-gray-100 rounded-2xl p-3">
           <p className="text-xs text-gray-400 mb-2">Total likes</p>
           <p className="text-3xl font-semibold text-[#BA7517]">
             {myPosts.reduce((acc, p) => acc + p.likes.length, 0)}

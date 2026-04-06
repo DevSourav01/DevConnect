@@ -7,7 +7,10 @@ import {
   onSnapshot,
   orderBy,
   query,
-  serverTimestamp,updateDoc, arrayUnion, arrayRemove
+  serverTimestamp,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
 } from "firebase/firestore";
 import { db } from "../Lib/firebase";
 import type { Post } from "../Types";
@@ -55,16 +58,18 @@ const usePosts = () => {
     await deleteDoc(doc(db, "posts", postId));
   };
 
-  const toggleLike=async(postId:string,likes:string[])=>{
-    if(!currentUser) return
-    const postRef=doc(db,'posts',postId)
-    const alreadyLiked=likes.includes(currentUser.uid)
-    await updateDoc(postRef,{
-      likes:alreadyLiked?arrayRemove(currentUser.uid):arrayUnion(currentUser.uid)
-    })
-  }
+  const toggleLike = async (postId: string, likes: string[]) => {
+    if (!currentUser) return;
+    const postRef = doc(db, "posts", postId);
+    const alreadyLiked = likes.includes(currentUser.uid);
+    await updateDoc(postRef, {
+      likes: alreadyLiked
+        ? arrayRemove(currentUser.uid)
+        : arrayUnion(currentUser.uid),
+    });
+  };
 
-  return { posts, loading, createPost, deletePost,toggleLike };
+  return { posts, loading, createPost, deletePost, toggleLike };
 };
 
 export default usePosts;
