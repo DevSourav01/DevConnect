@@ -33,3 +33,17 @@ export interface Comment {
   text: string;
   createdAt: Date;
 }
+
+
+// Github Repo
+
+export interface GithubRepo{
+  id:number
+  name:string
+  description: string | null
+  html_url:string
+  language:string | null
+  stargazers_count:number
+  forks_count:number
+  updated_at:string
+}

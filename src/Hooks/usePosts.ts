@@ -21,7 +21,7 @@ const usePosts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // real-time listener — updates feed instantly
+  // real-time listener — updates feed instantly 
   useEffect(() => {
     const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
 

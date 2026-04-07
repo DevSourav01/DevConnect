@@ -34,13 +34,13 @@ const Feed = () => {
               onChange={e => setContent(e.target.value)}
               placeholder="Share something with the dev community..."
               rows={3}
-              maxLength={500}
+              maxLength={1000}
               className="w-full text-sm text-gray-800 resize-none
                          focus:outline-none placeholder-gray-400"
             />
             <div className="flex items-center justify-between mt-2 pt-2 border-t border-gray-50">
               <span className="text-xs text-gray-300">
-                {content.length}/500
+                {content.length}/1000
               </span>
               <button
                 onClick={handlePost}

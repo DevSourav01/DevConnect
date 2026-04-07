@@ -51,11 +51,11 @@ const useComments = (postId: string) => {
 
   //delete comment
 
-  const deleteComment=async(commentId:string)=>{
-    await deleteDoc(doc(db,'posts',postId,'comments',commentId))
-  }
+  const deleteComment = async (commentId: string) => {
+    await deleteDoc(doc(db, "posts", postId, "comments", commentId));
+  };
 
-  return { comments, addComment,deleteComment };
+  return { comments, addComment, deleteComment };
 };
 
 export default useComments;
