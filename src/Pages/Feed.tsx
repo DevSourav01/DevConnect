@@ -1,25 +1,25 @@
-import { useState }   from 'react'
-import usePosts       from '../Hooks/usePosts'
-import useAuth        from '../Hooks/useAuth'
-import PostCard from '../Components/PostCard'
+import { useState } from "react";
+import usePosts from "../Hooks/usePosts";
+import useAuth from "../Hooks/useAuth";
+import PostCard from "../Components/PostCard";
+import PostCardSkeleton from "../Components/PostCardSkeleton";
 
 const Feed = () => {
-  const { currentUser }           = useAuth()
-  const { posts, loading, createPost } = usePosts()
-  const [content, setContent]     = useState('')
-  const [posting, setPosting]     = useState(false)
+  const { currentUser } = useAuth();
+  const { posts, loading, createPost } = usePosts();
+  const [content, setContent] = useState("");
+  const [posting, setPosting] = useState(false);
 
   const handlePost = async () => {
-    if (!content.trim()) return
-    setPosting(true)
-    await createPost(content)
-    setContent('')
-    setPosting(false)
-  }
+    if (!content.trim()) return;
+    setPosting(true);
+    await createPost(content);
+    setContent("");
+    setPosting(false);
+  };
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
-
       {/* create post box */}
       <div className="bg-white border border-gray-100 rounded-2xl p-5 mb-6">
         <div className="flex gap-3">
@@ -31,7 +31,7 @@ const Feed = () => {
           <div className="flex-1">
             <textarea
               value={content}
-              onChange={e => setContent(e.target.value)}
+              onChange={(e) => setContent(e.target.value)}
               placeholder="Share something with the dev community..."
               rows={3}
               maxLength={1000}
@@ -49,7 +49,7 @@ const Feed = () => {
                            text-white text-sm font-medium px-5 py-1.5
                            rounded-lg transition-colors"
               >
-                {posting ? 'Posting...' : 'Post'}
+                {posting ? "Posting..." : "Post"}
               </button>
             </div>
           </div>
@@ -58,21 +58,20 @@ const Feed = () => {
 
       {/* feed */}
       {loading ? (
-        <p className="text-center text-gray-400 text-sm py-10">
-          Loading feed...
-        </p>
+        <>
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+          <PostCardSkeleton />
+        </>
       ) : posts.length === 0 ? (
         <p className="text-center text-gray-400 text-sm py-10">
           No posts yet. Be the first to post!
         </p>
       ) : (
-        posts.map(post => (
-          <PostCard key={post.id} post={post} />
-        ))
+        posts.map((post) => <PostCard key={post.id} post={post} />)
       )}
-
     </div>
-  )
-}
+  );
+};
 
-export default Feed
+export default Feed;
