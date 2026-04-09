@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Lib/firebase";
+import { GiAtom } from "react-icons/gi";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -36,6 +37,7 @@ const Login = () => {
         <div className="flex items-center gap-2 mb-7">
           <div className="w-8 h-8 rounded-[10px] bg-[#534AB7] flex items-center justify-center">
             {/* your logo or initials */}
+            <GiAtom  color="#FFFFFF"/>
           </div>
           <span className="font-medium text-base">DevConnect</span>
         </div>
