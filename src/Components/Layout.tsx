@@ -65,12 +65,12 @@ const Layout = () => {
           />
 
           {/* name — desktop only */}
-          <span
+          {/* <span
             className="hidden md:inline text-sm font-medium
                        border border-gray-200 px-3 py-1 rounded-lg"
           >
             {currentUser?.displayName}
-          </span>
+          </span> */}
 
           <button
             onClick={handleLogout}
