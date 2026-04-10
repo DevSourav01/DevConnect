@@ -160,14 +160,6 @@ const Layout = () => {
           >
             Profile
           </NavLink>
-
-          {/* logout — mobile sidebar only */}
-          <button
-            onClick={handleLogout}
-            className="md:hidden mt-auto text-sm text-red-400 text-left px-3 py-2.5"
-          >
-            Logout
-          </button>
         </aside>
 
         {/* ── MAIN CONTENT ── */}
