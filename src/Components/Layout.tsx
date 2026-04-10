@@ -79,13 +79,6 @@ const Layout = () => {
               onClick={() => setShowMenu(!showMenu)}
               className="w-8 h-8 rounded-full border border-gray-100 cursor-pointer"
             />
-
-            {/* name — desktop only */}
-            {/* 
-        <span className="hidden md:inline text-sm font-medium border border-gray-200 px-3 py-1 rounded-lg">
-          {currentUser?.displayName}
-        </span> 
-        */}
           </div>
 
           {showMenu && (
