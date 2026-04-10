@@ -1,28 +1,29 @@
-import { useState } from 'react'
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
-import { signOut } from 'firebase/auth'
-import { auth } from '../Lib/firebase'
-import useAuth from '../Hooks/useAuth'
-import BottomNav from './BottomNav'
+import { useState } from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../Lib/firebase";
+import useAuth from "../Hooks/useAuth";
+import BottomNav from "./BottomNav";
 
 const linkClass = (isActive: boolean) =>
   `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-colors ${
     isActive
-      ? 'bg-[#EEEDFE] text-[#3C3489] font-medium border border-[#AFA9EC]'
-      : 'text-gray-500 hover:bg-gray-50'
-  }`
+      ? "bg-[#EEEDFE] text-[#3C3489] font-medium border border-[#AFA9EC]"
+      : "text-gray-500 hover:bg-gray-50"
+  }`;
 
 const Layout = () => {
-  const { currentUser } = useAuth()
-  const navigate = useNavigate()
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   const handleLogout = async () => {
-    await signOut(auth)
-    navigate('/login')
-  }
+    await signOut(auth);
+    navigate("/login");
+  };
 
-  const closeSidebar = () => setSidebarOpen(false)
+  const closeSidebar = () => setSidebarOpen(false);
 
   return (
     <div className="flex flex-col h-screen bg-gray-50">
@@ -43,9 +44,7 @@ const Layout = () => {
           </svg>
         </button>
 
-        <span className="text-[#534AB7] font-semibold text-lg">
-          DevConnect
-        </span>
+        <span className="text-[#534AB7] font-semibold text-lg">DevConnect</span>
 
         {/* search — desktop only */}
         <input
@@ -57,20 +56,12 @@ const Layout = () => {
                      focus:ring-purple-300"
         />
 
-        <div className="ml-auto flex items-center gap-2">
+        {/* <div className="ml-auto flex items-center gap-2">
           <img
             src={currentUser?.avatarURL}
             alt="avatar"
             className="w-8 h-8 rounded-full border border-gray-100"
           />
-
-          {/* name — desktop only */}
-          {/* <span
-            className="hidden md:inline text-sm font-medium
-                       border border-gray-200 px-3 py-1 rounded-lg"
-          >
-            {currentUser?.displayName}
-          </span> */}
 
           <button
             onClick={handleLogout}
@@ -79,6 +70,32 @@ const Layout = () => {
           >
             Logout
           </button>
+        </div> */}
+        <div className="ml-auto relative">
+          <div className="flex items-center gap-2">
+            <img
+              src={currentUser?.avatarURL}
+              alt="avatar"
+              onClick={() => setShowMenu(!showMenu)}
+              className="w-8 h-8 rounded-full border border-gray-100 cursor-pointer"
+            />
+
+            {/* name — desktop only */}
+            {/* 
+        <span className="hidden md:inline text-sm font-medium border border-gray-200 px-3 py-1 rounded-lg">
+          {currentUser?.displayName}
+        </span> 
+        */}
+          </div>
+
+          {showMenu && (
+            <button
+              onClick={handleLogout}
+              className="absolute right-0 top-10 md:inline text-sm text-red-400 hover:text-red-600 cursor-pointer bg-white shadow-md border border-gray-200 px-3 py-2 rounded-lg"
+            >
+              Logout
+            </button>
+          )}
         </div>
       </nav>
 
@@ -97,7 +114,7 @@ const Layout = () => {
           bg-white border-r border-gray-100
           flex flex-col gap-1 p-3 shrink-0
           transition-transform duration-200
-          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
         >
           {/* close button — mobile only */}
           <div className="flex items-center justify-between mb-2 md:hidden">
@@ -165,9 +182,9 @@ const Layout = () => {
           <Outlet />
         </main>
       </div>
-      <BottomNav/>
+      <BottomNav />
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
