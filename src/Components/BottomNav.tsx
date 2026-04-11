@@ -1,5 +1,8 @@
 import { NavLink } from 'react-router-dom'
 import useAuth     from '../Hooks/useAuth'
+import { MdRssFeed } from 'react-icons/md'
+import { IoIosPeople, IoMdPerson } from 'react-icons/io'
+import { FaHome } from 'react-icons/fa'
 
 const BottomNav = () => {
   const { currentUser } = useAuth()
@@ -17,34 +20,26 @@ const BottomNav = () => {
 
       <NavLink to="/" end
         className={({ isActive }) => itemClass(isActive)}>
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M10 2L2 9h2v9h5v-5h2v5h5V9h2L10 2z"/>
-        </svg>
+        <FaHome   size={20}/>
         Home
       </NavLink>
 
       <NavLink to="/feed"
         className={({ isActive }) => itemClass(isActive)}>
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M3 4h14v2H3V4zm0 5h14v2H3V9zm0 5h8v2H3v-2z"/>
-        </svg>
+        <MdRssFeed size={20} />
         Feed
       </NavLink>
 
       <NavLink to="/connections"
         className={({ isActive }) => itemClass(isActive)}>
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zm8 0a3 3 0 11-6 0 3 3 0 016 0zM1 16a7 7 0 0114 0H1zm8 0a7 7 0 0114 0h-4a3 3 0 00-6 0H9z"/>
-        </svg>
+        <IoIosPeople  size={20} />
         Connect
       </NavLink>
 
       <NavLink
         to={`/profile/${currentUser?.uid}`}
         className={({ isActive }) => itemClass(isActive)}>
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M10 10a4 4 0 100-8 4 4 0 000 8zm-7 8a7 7 0 0114 0H3z"/>
-        </svg>
+        <IoMdPerson size={20}  />
         Profile
       </NavLink>
 

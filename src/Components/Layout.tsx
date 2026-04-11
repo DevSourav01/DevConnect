@@ -4,6 +4,10 @@ import { signOut } from "firebase/auth";
 import { auth } from "../Lib/firebase";
 import useAuth from "../Hooks/useAuth";
 import BottomNav from "./BottomNav";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { MdDashboard, MdRssFeed } from "react-icons/md";
+import { IoIosPeople, IoMdPerson } from "react-icons/io";
+import { GoCrossReference } from "react-icons/go";
 
 const linkClass = (isActive: boolean) =>
   `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-colors ${
@@ -37,11 +41,7 @@ const Layout = () => {
           className="md:hidden text-gray-500 hover:text-gray-800 p-1"
           onClick={() => setSidebarOpen(true)}
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-            <rect y="3" width="20" height="2" rx="1" />
-            <rect y="9" width="20" height="2" rx="1" />
-            <rect y="15" width="20" height="2" rx="1" />
-          </svg>
+          <GiHamburgerMenu size={20} />
         </button>
 
         <span className="text-[#534AB7] font-semibold text-lg">DevConnect</span>
@@ -106,11 +106,11 @@ const Layout = () => {
           className={`fixed md:static top-0 left-0 h-full w-52 z-50
           bg-white border-r border-gray-100
           flex flex-col gap-1 p-3 shrink-0
-          transition-transform duration-200
+          transition-transform duration-500
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
         >
           {/* close button — mobile only */}
-          <div className="flex items-center justify-between mb-2 md:hidden">
+          {/* <div className="flex items-center justify-between mb-2 md:hidden">
             <span className="text-[#534AB7] font-semibold">DevConnect</span>
             <button
               onClick={closeSidebar}
@@ -118,7 +118,7 @@ const Layout = () => {
             >
               ×
             </button>
-          </div>
+          </div> */}
 
           <NavLink
             to="/"
@@ -126,7 +126,7 @@ const Layout = () => {
             onClick={closeSidebar}
             className={({ isActive }) => linkClass(isActive)}
           >
-            Dashboard
+            <MdDashboard size={20}/> Dashboard
           </NavLink>
 
           <NavLink
@@ -134,7 +134,7 @@ const Layout = () => {
             onClick={closeSidebar}
             className={({ isActive }) => linkClass(isActive)}
           >
-            Feed
+           <MdRssFeed size={20} /> Feed
           </NavLink>
 
           <NavLink
@@ -142,7 +142,7 @@ const Layout = () => {
             onClick={closeSidebar}
             className={({ isActive }) => linkClass(isActive)}
           >
-            Connections
+           <IoIosPeople  size={20} /> Connections
           </NavLink>
 
           <NavLink
@@ -150,7 +150,7 @@ const Layout = () => {
             onClick={closeSidebar}
             className={({ isActive }) => linkClass(isActive)}
           >
-            Referrals
+            <GoCrossReference size={20}/>Referrals
           </NavLink>
 
           <NavLink
@@ -158,7 +158,7 @@ const Layout = () => {
             onClick={closeSidebar}
             className={({ isActive }) => linkClass(isActive)}
           >
-            Profile
+            <IoMdPerson size={20}  /> Profile
           </NavLink>
         </aside>
 
