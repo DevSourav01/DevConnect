@@ -4,6 +4,8 @@ import useAuth from "../Hooks/useAuth";
 import usePosts from "../Hooks/usePosts";
 import useComments from "../Hooks/useComments";
 import type { Post } from "../Types";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { FaRegComment } from "react-icons/fa";
 
 interface Props {
   post: Post;
@@ -30,7 +32,7 @@ const PostCard = ({ post }: Props) => {
   };
 
   return (
-    <div className="bg-white border border-gray-100 rounded-2xl p-5 mb-4">
+    <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-4">
       {/* author row */}
       <div className="flex items-center justify-between mb-3">
         <Link
@@ -52,10 +54,11 @@ const PostCard = ({ post }: Props) => {
         {isOwner && (
           <button
             onClick={() => deletePost(post.id)}
-            className="text-xs text-red-400 hover:text-red-600"
+            className="text-xs text-blue-500 bg-white rounded-1xl p-0.5 hover:cursor-pointer"
           >
             Delete
           </button>
+          
         )}
       </div>
 
@@ -71,20 +74,21 @@ const PostCard = ({ post }: Props) => {
           onClick={() => toggleLike(post.id, post.likes)}
           className={`flex items-center gap-1.5 text-sm transition-colors ${
             isLiked
-              ? "text-[#D4537E] font-medium"
-              : "text-gray-400 hover:text-[#D4537E]"
+              ? "text-[#5371d4] font-medium"
+              : "text-gray-400  hover:cursor-pointer  "
           }`}
         >
-          {isLiked ? "♥" : "♡"}
+          {/* {isLiked ? "♥" : "♡"} */}
+          {isLiked ? <AiFillLike />: <AiOutlineLike />}
           <span>{post.likes.length}</span>
         </button>
 
         {/* comment button */}
         <button
           onClick={() => setShowComments(!showComments)}
-          className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#534AB7] transition-colors"
+          className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-[#534AB7] hover:cursor-pointer transition-colors"
         >
-          ◯ <span>{comments.length}</span>
+          <FaRegComment /><span>{comments.length}</span>
         </button>
       </div>
 
