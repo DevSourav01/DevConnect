@@ -26,9 +26,6 @@ const useFollow = () => {
         }
 
         await batch.commit();
-        console.log(
-          `✅ ${isFollowing ? "Unfollowed" : "Followed"} ${targetUid}`,
-        );
       } catch (error: unknown) {
         console.error("Follow error:", error);
 
@@ -41,9 +38,9 @@ const useFollow = () => {
       }
     },
     [currentUser],
-  ); // ✅ Dependency array
+  ); 
 
-  return { toggleFollow }; // 🔥 OUTSIDE function
+  return { toggleFollow }; 
 };
 
 export default useFollow;
