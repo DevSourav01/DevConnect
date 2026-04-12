@@ -1,43 +1,43 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../Lib/firebase";
-import { GiAtom } from "react-icons/gi";
+import { useState } from "react"
+import { Link, Navigate } from "react-router-dom"
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { auth } from "../Lib/firebase"
+import { GiAtom } from "react-icons/gi"
+import useAuth from "../Hooks/useAuth"
 
 const Login = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const navigate = useNavigate();
+  const { currentUser } = useAuth()  // ← fix 1
+  const [email, setEmail] = useState<string>("")
+  const [password, setPassword] = useState<string>("")
+  const [error, setError] = useState<string>("")
+  const [loading, setLoading] = useState<boolean>(false)
+
+  // ← fix 2 — capital Navigate, currentUser destructured
+  if (currentUser) return <Navigate to="/" replace />
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
-
+    e.preventDefault()
+    setError("")
+    setLoading(true)
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      // AuthContext picks up the user automatically
-      navigate("/");
+      await signInWithEmailAndPassword(auth, email, password)
     } catch (err: unknown) {
       if (err instanceof Error) {
-        setError(err.message);
+        setError(err.message)
       } else {
-        setError("An unexpected error occurred.");
+        setError("An unexpected error occurred.")
       }
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-[#F1EFE8] flex items-center justify-center px-4">
       <div className="bg-white rounded-[20px] border border-gray-100 p-9 w-full max-w-md">
         <div className="flex items-center gap-2 mb-7">
           <div className="w-8 h-8 rounded-[10px] bg-[#534AB7] flex items-center justify-center">
-            {/* your logo or initials */}
-            <GiAtom  color="#FFFFFF"/>
+            <GiAtom color="#FFFFFF" />
           </div>
           <span className="font-medium text-base">DevConnect</span>
         </div>
@@ -64,8 +64,8 @@ const Login = () => {
               required
               placeholder="you@example.com"
               className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm
-           focus:outline-none focus:ring-2 focus:ring-purple-400
-           focus:border-purple-400 transition-all"
+                         focus:outline-none focus:ring-2 focus:ring-purple-400
+                         focus:border-purple-400 transition-all"
             />
           </div>
 
@@ -80,8 +80,8 @@ const Login = () => {
               required
               placeholder="your password"
               className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm
-           focus:outline-none focus:ring-2 focus:ring-purple-400
-           focus:border-purple-400 transition-all"
+                         focus:outline-none focus:ring-2 focus:ring-purple-400
+                         focus:border-purple-400 transition-all"
             />
           </div>
 
@@ -89,7 +89,7 @@ const Login = () => {
             type="submit"
             disabled={loading}
             className="w-full bg-[#534AB7] hover:bg-[#3C3489] disabled:opacity-50
-           text-white font-medium py-2.5 rounded-lg text-sm transition-colors"
+                       text-white font-medium py-2.5 rounded-lg text-sm transition-colors"
           >
             {loading ? "Signing in..." : "Sign in"}
           </button>
@@ -97,16 +97,13 @@ const Login = () => {
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Don't have an account?{" "}
-          <Link
-            to="/register"
-            className="text-[#534AB7] font-medium hover:underline"
-          >
+          <Link to="/register" className="text-[#534AB7] font-medium hover:underline">
             Sign up
           </Link>
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
